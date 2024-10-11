@@ -22,7 +22,7 @@ import { BarcodeDetectorDelegate } from "./native-bar-code-detector";
 /**
  * Shim layer for {@interface QrcodeDecoder}.
  * 
- * Currently uses {@class ZXingHtml5QrcodeDecoder}, can be replace with another library.
+ * Currently uses {@class ZXingHtml5QrcodeDecoder}, can be replaced with another library.
  */
 export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
     
@@ -59,7 +59,7 @@ export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
     }
 
     async decodeAsync(canvas: HTMLCanvasElement): Promise<QrcodeResult> {
-        let startTime = performance.now();
+        const startTime = performance.now();
         try {
             return await this.getDecoder().decodeAsync(canvas);
         } finally {
@@ -69,7 +69,7 @@ export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
 
     async decodeRobustlyAsync(canvas: HTMLCanvasElement)
         : Promise<QrcodeResult> {
-        let startTime = performance.now();
+        const startTime = performance.now();
         try {
             return await this.primaryDecoder.decodeAsync(canvas);
         } catch(error) {
@@ -100,7 +100,7 @@ export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
         if (!this.verbose) {
             return;
         }
-        let executionTime = performance.now() - startTime;
+        const executionTime = performance.now() - startTime;
         this.executionResults.push(executionTime);
         this.executions++;
         this.possiblyFlushPerformanceReport();
@@ -115,11 +115,11 @@ export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
         }
 
         let sum:number = 0;
-        for (let executionTime of this.executionResults) {
+        for (const executionTime of this.executionResults) {
             sum += executionTime;
         }
-        let mean = sum / this.executionResults.length;
-        // eslint-disable-next-line no-console
+        const mean = sum / this.executionResults.length;
+         
         console.log(`${mean} ms for ${this.executionResults.length} last runs.`);
         this.executions = 0;
         this.executionResults = [];

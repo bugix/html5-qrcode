@@ -421,12 +421,12 @@ export class Html5Qrcode {
                 return;
             }
 
-            let cameraRenderingOptions: CameraRenderingOptions = {};
+            const cameraRenderingOptions: CameraRenderingOptions = {};
             if (!areVideoConstraintsEnabled || internalConfig.aspectRatio) {
                 cameraRenderingOptions.aspectRatio = internalConfig.aspectRatio;
             }
 
-            let renderingCallbacks: RenderingCallbacks = {
+            const renderingCallbacks: RenderingCallbacks = {
                 onRenderSurfaceReady: (viewfinderWidth, viewfinderHeight) => {
                     $this.setupUi(
                         viewfinderWidth, viewfinderHeight, internalConfig);
@@ -562,13 +562,13 @@ export class Html5Qrcode {
             if (!this.element) {
                 return;
             }
-            let childElement = document.getElementById(Constants.SHADED_REGION_ELEMENT_ID);
+            const childElement = document.getElementById(Constants.SHADED_REGION_ELEMENT_ID);
             if (childElement) {
                 this.element.removeChild(childElement);
             }
          };
 
-        let $this = this;
+        const $this = this;
         return this.renderedCamera!.close().then(() => {
             $this.renderedCamera = null;
 
@@ -695,12 +695,12 @@ export class Html5Qrcode {
                 // Hidden canvas should be at-least as big as the image.
                 // This could get really troublesome for large images like 12MP
                 // images or 48MP images captured on phone.
-                let padding = Constants.FILE_SCAN_HIDDEN_CANVAS_PADDING;
-                let hiddenImageWidth = Math.max(inputImage.width, config.width);
-                let hiddenImageHeight = Math.max(inputImage.height, config.height);
+                const padding = Constants.FILE_SCAN_HIDDEN_CANVAS_PADDING;
+                const hiddenImageWidth = Math.max(inputImage.width, config.width);
+                const hiddenImageHeight = Math.max(inputImage.height, config.height);
 
-                let hiddenCanvasWidth = hiddenImageWidth + 2 * padding;
-                let hiddenCanvasHeight = hiddenImageHeight + 2 * padding;
+                const hiddenCanvasWidth = hiddenImageWidth + 2 * padding;
+                const hiddenCanvasHeight = hiddenImageHeight + 2 * padding;
 
                 // Try harder for file scan.
                 // TODO(minhazav): Fallback to mirroring, 90 degree rotation and
@@ -938,7 +938,7 @@ export class Html5Qrcode {
             return true;
         }
 
-        let experimentalFeatures = config!.experimentalFeatures!;
+        const experimentalFeatures = config!.experimentalFeatures!;
         if (isNullOrUndefined(
             experimentalFeatures.useBarCodeDetectorIfSupported)) {
             return true;
@@ -956,7 +956,7 @@ export class Html5Qrcode {
         internalConfig: InternalHtml5QrcodeConfig) {
         const qrboxSize = internalConfig.qrbox!;
         this.validateQrboxConfig(qrboxSize);
-        let qrDimensions = this.toQrdimensions(
+        const qrDimensions = this.toQrdimensions(
             viewfinderWidth, viewfinderHeight, qrboxSize);
 
         const validateMinSize = (size: number) => {
@@ -1062,7 +1062,7 @@ export class Html5Qrcode {
             {width: viewfinderWidth, height: viewfinderHeight}: internalConfig.qrbox!;
 
         this.validateQrboxConfig(qrboxSize);
-        let qrDimensions = this.toQrdimensions(viewfinderWidth, viewfinderHeight, qrboxSize);
+        const qrDimensions = this.toQrdimensions(viewfinderWidth, viewfinderHeight, qrboxSize);
         if (qrDimensions.height > viewfinderHeight) {
             this.logger.warn("[Html5Qrcode] config.qrbox has height that is"
                 + "greater than the height of the video stream. Shading will be"
@@ -1153,7 +1153,7 @@ export class Html5Qrcode {
             return true;
         }).catch((error) => {
             this.possiblyUpdateShaders(/* qrMatch= */ false);
-            let errorMessage = Html5QrcodeStrings.codeParseError(error);
+            const errorMessage = Html5QrcodeStrings.codeParseError(error);
             qrCodeErrorCallback(
                 errorMessage, Html5QrcodeErrorFactory.createFrom(errorMessage));
             return false;
@@ -1259,12 +1259,12 @@ export class Html5Qrcode {
             };
 
             const keys = Object.keys(cameraIdOrConfig);
-            if (keys.length !== 1) {
+            const key = keys[0];
+            if (!key) {
                 throw "'cameraIdOrConfig' object should have exactly 1 key,"
                     + ` if passed as an object, found ${keys.length} keys`;
             }
 
-            const key:string = Object.keys(cameraIdOrConfig)[0];
             if (key !== facingModeKey && key !== deviceIdKey) {
                 throw `Only '${facingModeKey}' and '${deviceIdKey}' `
                     + " are supported for 'cameraIdOrConfig'";

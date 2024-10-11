@@ -89,7 +89,7 @@ export class Html5QrcodeConstants {
     static DEFAULT_REMEMBER_LAST_CAMERA_USED = true;
     static DEFAULT_SUPPORTED_SCAN_TYPE = [
         Html5QrcodeScanType.SCAN_TYPE_CAMERA,
-        Html5QrcodeScanType.SCAN_TYPE_FILE];
+        Html5QrcodeScanType.SCAN_TYPE_FILE] as const;
 }
 
 /** Defines dimension for QR Code Scanner. */
@@ -190,7 +190,7 @@ export interface Html5QrcodeResult {
  */
 export class Html5QrcodeResultFactory {
     static createFromText(decodedText: string): Html5QrcodeResult {
-        let qrcodeResult = {
+        const qrcodeResult = {
             text: decodedText
         };
 
@@ -302,14 +302,14 @@ export class BaseLoggger implements Logger {
 
     public log(message: string): void {
         if (this.verbose) {
-            // eslint-disable-next-line no-console
+             
             console.log(message);
         }
     }
 
     public warn(message: string): void {
         if (this.verbose) {
-            // eslint-disable-next-line no-console
+             
             console.warn(message);
         }
     }
@@ -317,7 +317,7 @@ export class BaseLoggger implements Logger {
     public logError(message: string, isExperimental?: boolean)
         : void {
         if (this.verbose || isExperimental === true) {
-            // eslint-disable-next-line no-console
+             
             console.error(message);
         }
     }
@@ -327,7 +327,7 @@ export class BaseLoggger implements Logger {
             throw "Logger#logError called without arguments";
         }
         if (this.verbose) {
-            // eslint-disable-next-line no-console
+             
             console.error(errors);
         }
     }

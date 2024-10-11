@@ -28,7 +28,7 @@ export class PersistedDataManager {
     private static LOCAL_STORAGE_KEY: string = "HTML5_QRCODE_DATA";
 
     constructor() {
-        let data = localStorage.getItem(PersistedDataManager.LOCAL_STORAGE_KEY);
+        const data = localStorage.getItem(PersistedDataManager.LOCAL_STORAGE_KEY);
         if (!data) {
             this.reset();
         } else {
