@@ -196,7 +196,7 @@ class InternalHtml5QrcodeConfig implements Html5QrcodeCameraScanConfig {
     public readonly aspectRatio: number | undefined;
     public readonly videoConstraints: MediaTrackConstraints | undefined;
 
-    private logger: Logger;
+    private readonly logger: Logger;
 
     private constructor(
         config: Html5QrcodeCameraScanConfig | undefined,
@@ -316,15 +316,13 @@ export class Html5Qrcode {
 
         this.elementId = elementId;
         this.verbose = false;
-        
-        let experimentalFeatureConfig : ExperimentalFeaturesConfig | undefined;
+
         let configObject: Html5QrcodeFullConfig | undefined;
         if (typeof configOrVerbosityFlag == "boolean") {
-            this.verbose = configOrVerbosityFlag === true;
+            this.verbose = configOrVerbosityFlag;
         } else if (configOrVerbosityFlag) {
             configObject = configOrVerbosityFlag;
             this.verbose = configObject.verbose === true;
-            experimentalFeatureConfig = configObject.experimentalFeatures;
         }
         
         this.logger = new BaseLoggger(this.verbose);
@@ -400,8 +398,6 @@ export class Html5Qrcode {
 
         // qr shaded box
         const element = document.getElementById(this.elementId)!;
-        const rootElementWidth = element.clientWidth
-            ? element.clientWidth : Constants.DEFAULT_WIDTH;
         element.style.position = "relative";
 
         this.shouldScan = true;
@@ -1218,7 +1214,7 @@ export class Html5Qrcode {
         this.scanContext(qrCodeSuccessCallback, qrCodeErrorCallback)
             .then((isSuccessfull) => {
                 // Previous scan failed and disableFlip is off.
-                if (!isSuccessfull && internalConfig.disableFlip !== true) {
+                if (!isSuccessfull && !internalConfig.disableFlip) {
                     this.context!.translate(this.context!.canvas.width, 0);
                     this.context!.scale(-1, 1);
                     this.scanContext(qrCodeSuccessCallback, qrCodeErrorCallback)

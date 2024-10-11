@@ -21,9 +21,9 @@ export type OnCameraZoomValueChangeCallback = (zoomValue: number) => void;
 /** Class for creating and managing zoom slider UI. */
 export class CameraZoomUi {
 
-    private zoomElementContainer: HTMLDivElement;
-    private rangeInput: HTMLInputElement;
-    private rangeText: HTMLSpanElement;
+    private readonly zoomElementContainer: HTMLDivElement;
+    private readonly rangeInput: HTMLInputElement;
+    private readonly rangeText: HTMLSpanElement;
 
     private onChangeCallback: OnCameraZoomValueChangeCallback | null = null;
 

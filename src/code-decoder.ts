@@ -26,9 +26,9 @@ import { BarcodeDetectorDelegate } from "./native-bar-code-detector";
  */
 export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
     
-    private verbose: boolean;
-    private primaryDecoder: QrcodeDecoderAsync;
-    private secondaryDecoder: QrcodeDecoderAsync | undefined;
+    private readonly verbose: boolean;
+    private readonly primaryDecoder: QrcodeDecoderAsync;
+    private readonly secondaryDecoder: QrcodeDecoderAsync | undefined;
 
     private readonly EXECUTIONS_TO_REPORT_PERFORMANCE = 100;
     private executions: number = 0;
@@ -46,7 +46,7 @@ export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
         if (useBarCodeDetectorIfSupported
                 && BarcodeDetectorDelegate.isSupported()) {
             this.primaryDecoder = new BarcodeDetectorDelegate(
-                requestedFormats, verbose, logger);
+                requestedFormats, logger);
             // If 'BarcodeDetector' is supported, the library will alternate
             // between 'BarcodeDetector' and 'zxing-js' to compensate for
             // quality gaps between the two.
@@ -88,7 +88,7 @@ export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
             return this.primaryDecoder;
         }
 
-        if (this.wasPrimaryDecoderUsedInLastDecode === false) {
+        if (!this.wasPrimaryDecoderUsedInLastDecode) {
             this.wasPrimaryDecoderUsedInLastDecode = true;
             return this.primaryDecoder;
         }

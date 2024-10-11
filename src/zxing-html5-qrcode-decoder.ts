@@ -59,8 +59,8 @@ export class ZXingHtml5QrcodeDecoder implements QrcodeDecoderAsync {
     private readonly reverseFormatMap: Map<any, Html5QrcodeSupportedFormats>
         = this.createReverseFormatMap();
 
-    private hints: Map<any, any>;
-    private verbose: boolean;
+    private readonly hints: Map<any, any>;
+    private readonly verbose: boolean;
     private logger: Logger;
 
     public constructor(

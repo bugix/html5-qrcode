@@ -179,16 +179,16 @@ function toHtml5QrcodeFullConfig(
 export class Html5QrcodeScanner {
 
     //#region private fields
-    private elementId: string;
-    private config: Html5QrcodeScannerConfig;
-    private verbose: boolean;
+    private readonly elementId: string;
+    private readonly config: Html5QrcodeScannerConfig;
+    private readonly verbose: boolean;
     private currentScanType: Html5QrcodeScanType;
     private sectionSwapAllowed: boolean;
     private persistedDataManager: PersistedDataManager;
     private scanTypeSelector: ScanTypeSelector;
     private logger: Logger;
 
-    // Initally null fields.
+    // Initially null fields.
     private html5Qrcode: Html5Qrcode | undefined;
     private qrCodeSuccessCallback: QrcodeSuccessCallback | undefined;
     private qrCodeErrorCallback: QrcodeErrorCallback | undefined;

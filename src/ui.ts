@@ -17,7 +17,7 @@ type OnClickListener0 = () => void;
 //#region Info Icon + Div
 
 class LibraryInfoDiv {
-    private infoDiv: HTMLDivElement;
+    private readonly infoDiv: HTMLDivElement;
 
     constructor() {
         this.infoDiv = document.createElement("div");
@@ -72,9 +72,9 @@ class LibraryInfoDiv {
 
 class LibraryInfoIcon {
 
-    private infoIcon: HTMLImageElement;
-    private onTapIn: OnClickListener0;
-    private onTapOut: OnClickListener0;
+    private readonly infoIcon: HTMLImageElement;
+    private readonly onTapIn: OnClickListener0;
+    private readonly onTapOut: OnClickListener0;
     private isShowingInfoIcon: boolean = true;
 
     constructor(onTapIn: OnClickListener0, onTapOut: OnClickListener0) {

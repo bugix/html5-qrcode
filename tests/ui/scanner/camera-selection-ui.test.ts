@@ -1,6 +1,6 @@
 import { expect } from "chai";
 
-import { CameraDevice } from "../../../src/camera/core";
+import { CameraDevice } from "../../../src";
 import { CameraSelectionUi } from "../../../src/ui/scanner/camera-selection-ui";
 import { PublicUiElementIdAndClasses } from "../../../src/ui/scanner/base";
 
@@ -123,10 +123,10 @@ describe("CameraSelectionUi setting and getting values", () => {
         let cameraSelectUi = CameraSelectionUi.create(parentElement!, cameras);
 
         // First camera is default.
-        expect(cameraSelectUi.getValue()).eq(cameras[0].id);
+        expect(cameraSelectUi.getValue()).eq(cameras[0]!.id);
 
-        cameraSelectUi.setValue(cameras[1].id);
-        expect(cameraSelectUi.getValue()).eq(cameras[1].id);
+        cameraSelectUi.setValue(cameras[1]!.id);
+        expect(cameraSelectUi.getValue()).eq(cameras[1]!.id);
 
         expect(() => {
             cameraSelectUi.setValue("random string");
@@ -138,7 +138,7 @@ describe("CameraSelectionUi setting and getting values", () => {
         let cameras = createCameraList(numCameras);
         let cameraSelectUi = CameraSelectionUi.create(parentElement!, cameras);
 
-        expect(cameraSelectUi.hasValue(cameras[1].id)).to.be.true;
+        expect(cameraSelectUi.hasValue(cameras[1]!.id)).to.be.true;
         expect(cameraSelectUi.hasValue("random string")).to.be.false;
     });
 });

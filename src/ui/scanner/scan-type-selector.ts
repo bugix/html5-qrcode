@@ -15,7 +15,7 @@ import {
 
 /** Util class to help with scan type selection in scanner class. */
 export class ScanTypeSelector {
-    private supportedScanTypes: readonly [Html5QrcodeScanType, ...Array<Html5QrcodeScanType>];
+    private readonly supportedScanTypes: readonly [Html5QrcodeScanType, ...Array<Html5QrcodeScanType>];
 
     constructor(supportedScanTypes?: ReadonlyArray<Html5QrcodeScanType> | []) {
         this.supportedScanTypes = this.validateAndReturnScanTypes(

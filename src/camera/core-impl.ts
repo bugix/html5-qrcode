@@ -28,7 +28,7 @@ abstract class AbstractCameraCapability<T> implements CameraCapability<T> {
     protected readonly name: string;
     protected readonly track: MediaStreamTrack;
 
-    constructor(name: string, track: MediaStreamTrack) {
+    protected constructor(name: string, track: MediaStreamTrack) {
         this.name = name;
         this.track = track;
     }
@@ -62,7 +62,7 @@ abstract class AbstractCameraCapability<T> implements CameraCapability<T> {
 }
 
 abstract class AbstractRangeCameraCapability extends AbstractCameraCapability<number> {
-    constructor(name: string, track: MediaStreamTrack) {
+    protected constructor(name: string, track: MediaStreamTrack) {
        super(name, track);
     }
 

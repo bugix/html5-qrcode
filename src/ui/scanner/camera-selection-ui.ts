@@ -82,7 +82,7 @@ export class CameraSelectionUi {
     }
 
     public isDisabled() {
-        return this.selectElement.disabled === true;
+        return this.selectElement.disabled;
     }
 
     public enable() {

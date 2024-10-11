@@ -1,6 +1,6 @@
 import { expect } from "chai";
 
-import { Html5QrcodeScanType } from "../../../src/core";
+import { Html5QrcodeScanType } from "../../../src";
 import { ScanTypeSelector } from "../../../src/ui/scanner/scan-type-selector";
 
 describe("ScanTypeSelector#getDefaultScanType()", () => {

@@ -294,7 +294,7 @@ export interface Logger {
  */
 export class BaseLoggger implements Logger {
 
-    private verbose: boolean;
+    private readonly verbose: boolean;
 
     public constructor(verbose: boolean) {
         this.verbose = verbose;

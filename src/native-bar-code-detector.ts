@@ -85,9 +85,8 @@ interface BarcodeDetectorResult {
     private readonly reverseFormatMap: Map<string, Html5QrcodeSupportedFormats>
         = this.createReverseFormatMap();
 
-    private verbose: boolean;
     private logger: Logger;
-    private detector: any;
+    private readonly detector: any;
 
     /**
      * Returns true if this API is supported by the browser.
@@ -108,13 +107,11 @@ interface BarcodeDetectorResult {
 
     public constructor(
         requestedFormats: Array<Html5QrcodeSupportedFormats>,
-        verbose: boolean,
         logger: Logger) {
         if (!BarcodeDetectorDelegate.isSupported()) {
             throw "Use html5qrcode.min.js without edit, Use "
                 + "BarcodeDetectorDelegate only if it isSupported();";
         }
-        this.verbose = verbose;
         this.logger = logger;
 
         // create new detector
